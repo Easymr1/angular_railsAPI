@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+        <label for="email">
+            email
+        </label> <br>
+        <input type="text" id="email" class="form-control" name="email" ngModel required>
+    </div>
+    <div class="form-group">
+        <label for="password">
+            password
+        </label><br>
+        <input type="password" id="password" class="form-control" name="password" ngModel required>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+    </div>

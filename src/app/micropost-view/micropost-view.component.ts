@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { MicropostService } from '../services/micropost.services';
 
 @Component({
   selector: 'app-micropost-view',
@@ -8,21 +9,16 @@ import {HttpClient} from '@angular/common/http';
 })
 export class MicropostViewComponent implements OnInit {
 
-  users!: any;
+  microposts!: any;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private micropostService: MicropostService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'))
-    const headers = { 'Authorization': localStorage.getItem('token')!};
-    this.http.get('http://localhost:3000/microposts', { headers }
-    
-    ).subscribe(
-      res => {
-        this.users = res;
-        console.log(this.users)
-      }
-    )
+    this.micropostService.getMicroposts()
+    .then( () => {
+      this.microposts = this.micropostService.data
+    })
   }
+
 
 }
