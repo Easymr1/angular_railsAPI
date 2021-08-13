@@ -1,10 +1,9 @@
 <h2>Publication</h2>
 
 <div *ngFor="let micropost of microposts">
-    <a>
-        <h3>{{micropost.content}}</h3>
-        <button (click)="deleteMicropost(micropost.id)">Supprimer</button>
-        <app-update-micropost [id]=micropost.id></app-update-micropost>
+    <a [routerLink]="['/micropost/', micropost.id]" >
+        <h3>{{micropost.content}}</h3>  
     </a>
-    
+    <app-update-micropost [id]=micropost.id></app-update-micropost>
+    <button (click)="deleteMicropost(micropost.id)">Supprimer</button>
 </div>

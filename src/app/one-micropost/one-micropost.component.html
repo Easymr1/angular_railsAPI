@@ -1,1 +1,5 @@
-<p>one-micropost works!</p>
+<div>
+<h2>{{micropost.content}}</h2>
+<app-update-micropost [id]=micropost.id></app-update-micropost>
+<button (click)=deleteMicropost()>X</button>
+</div>
