@@ -16,7 +16,7 @@ export class MicropostViewComponent implements OnInit {
   ngOnInit(): void {
     this.micropostService.getMicroposts()
     .then( () => {
-      this.microposts = this.micropostService.data
+      this.microposts = this.micropostService.allMicroposts
     })
   }
 

@@ -1,0 +1,16 @@
+.nav {
+    background-color: white;
+    &--ul {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        &__li {
+            background-color: white;
+        }
+    }
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+}

@@ -11,12 +11,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { MicropostService } from './services/micropost.services';
+import { HomeComponent } from './home/home.component';
+import { OneMicropostComponent } from './one-micropost/one-micropost.component';
 
 const appRoutes: Routes = [
-  { path: 'microposts', component: MicropostViewComponent },
-  { path: '', component: MicropostViewComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'oneMicropost/:id', component: OneMicropostComponent },
 ];
 
 @NgModule({
@@ -24,7 +27,9 @@ const appRoutes: Routes = [
     AppComponent,
     SignupComponent,
     MicropostViewComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    OneMicropostComponent
   ],
   imports: [
     BrowserModule,

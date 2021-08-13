@@ -1,11 +1,11 @@
-<nav>
-    <ul>
-        <li routerLinkActive="active"><a routerLink='signup'>Inscription</a></li>
-        <li routerLinkActive="active"><a routerLink='login'>Se connecter</a></li>
-        <li routerLinkActive="active"><a routerLink='microposts'>Microposts</a></li>
+<nav class="nav">
+    <ul class="nav--ul">
+        <li class="nav--ul__li" routerLinkActive="active"><a routerLink='signup'>Inscription</a></li>
+        <li class="nav--ul__li" routerLinkActive="active"><a routerLink='login'>Se connecter</a></li>
+        <li class="nav--ul__li" routerLinkActive="active"><a routerLink='home'>Page d'acceuil</a></li>
     </ul>
 </nav>
 <h1 class="titre">Page d'acceuil</h1>
-<div>
+<div class="body">
     <router-outlet></router-outlet>
 </div>
