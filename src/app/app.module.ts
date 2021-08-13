@@ -13,6 +13,7 @@ import { AuthService } from './services/auth.service';
 import { MicropostService } from './services/micropost.services';
 import { HomeComponent } from './home/home.component';
 import { OneMicropostComponent } from './one-micropost/one-micropost.component';
+import { UpdateMicropostComponent } from './update-micropost/update-micropost.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     MicropostViewComponent,
     LoginComponent,
     HomeComponent,
-    OneMicropostComponent
+    OneMicropostComponent,
+    UpdateMicropostComponent
   ],
   imports: [
     BrowserModule,

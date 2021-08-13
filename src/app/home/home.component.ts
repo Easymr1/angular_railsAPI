@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { MicropostService } from '../services/micropost.services';
 
@@ -10,7 +9,7 @@ import { MicropostService } from '../services/micropost.services';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http : HttpClient, private micropostService: MicropostService) { }
+  constructor( private micropostService: MicropostService) { }
 
   ngOnInit(): void {
   }

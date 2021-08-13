@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs'
 })
 export class MicropostViewComponent implements OnInit {
   microposts!: any;
+
   subscription!: Subscription;
   constructor(private http : HttpClient, private micropostService: MicropostService) { }
 
@@ -22,12 +23,15 @@ export class MicropostViewComponent implements OnInit {
     })
   }
 
-
   getMicroposts(): void{
     this.micropostService.getMicroposts().subscribe(
             (res: any) => {
             this.microposts = res
             }
           )
+  }
+
+  deleteMicropost(id: number):void {
+    this.micropostService.delete(id)
   }
 }

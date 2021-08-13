@@ -1,8 +1,10 @@
 <h2>Publication</h2>
 
 <div *ngFor="let micropost of microposts">
-    <a >
+    <a>
         <h3>{{micropost.content}}</h3>
+        <button (click)="deleteMicropost(micropost.id)">Supprimer</button>
+        <app-update-micropost [id]=micropost.id></app-update-micropost>
     </a>
     
 </div>

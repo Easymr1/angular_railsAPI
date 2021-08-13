@@ -1,0 +1,15 @@
+<div>
+    <button *ngIf=!update (click)="putMicropost(true)">Modifier</button>
+    <div *ngIf=update>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="swich">
+                Swich
+            </label> <br>
+            <input type="text" id="swich" class="form-control" name="swich" ngModel required>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Lancer</button>
+        </form>
+        <button *ngIf=update (click)="putMicropost(false)">Annuler</button>
+    </div>
+</div>

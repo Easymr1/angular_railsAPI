@@ -35,12 +35,27 @@ export class MicropostService implements OnInit{
 
     getOneMicropost(id: number) {
         const headers = { 'Authorization': localStorage.getItem('token')!}
-        this.http.post<any>(`http://localhost:3000/microposts${id}`, { headers })
+        this.http.post<any>(`http://localhost:3000/microposts/${id}`, { headers })
     }
 
-    getDelete(id: number) {
+    put(id: number, swich: any) {
+        const headers = { 'Authorization': localStorage.getItem('token')!}
+        const micropost = {
+            content: swich,
+        }
+        this.http.put<any>(`http://localhost:3000/microposts/${id}`, {micropost}, { headers })
+        .subscribe((res: any) => {
+            this.micropostRefresh$.next()
+        })
+    }
+
+    delete(id: number) {
         const headers = { 'Authorization': localStorage.getItem('token')!};
-        return this.http.delete('http://localhost:3000/microposts', { headers })
+        return this.http.delete(`http://localhost:3000/microposts/${id}`, { headers })
+        .subscribe((res: any) => {
+            console.log(res)
+            this.micropostRefresh$.next()
+        })
     }
 
 }
