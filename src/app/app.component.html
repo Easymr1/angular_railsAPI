@@ -3,6 +3,7 @@
         <li class="nav--ul__li" routerLinkActive="active"><a routerLink='signup'>Inscription</a></li>
         <li class="nav--ul__li" routerLinkActive="active"><a routerLink='login'>Se connecter</a></li>
         <li class="nav--ul__li" routerLinkActive="active"><a routerLink='home'>Page d'acceuil</a></li>
+        <li class="nav--ul__li" routerLinkActive="active"><a [routerLink]="['profile/', userId]">Profile</a></li>
     </ul>
 </nav>
 <h1 class="titre">Page d'acceuil</h1>

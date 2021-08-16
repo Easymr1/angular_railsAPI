@@ -14,13 +14,16 @@ import { MicropostService } from './services/micropost.services';
 import { HomeComponent } from './home/home.component';
 import { OneMicropostComponent } from './one-micropost/one-micropost.component';
 import { UpdateMicropostComponent } from './update-micropost/update-micropost.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', component: HomeComponent },
+  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+  { path: '', canActivate: [AuthGuard], component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'micropost/:id', component: OneMicropostComponent },
+  { path: 'micropost/:id',canActivate: [AuthGuard], component: OneMicropostComponent },
+  { path: 'profile/:id',canActivate: [AuthGuard], component: ProfileComponent },
 ];
 
 @NgModule({
@@ -31,18 +34,21 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     OneMicropostComponent,
-    UpdateMicropostComponent
+    UpdateMicropostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     UserService,
     AuthService,
-    MicropostService
+    MicropostService, 
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

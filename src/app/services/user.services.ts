@@ -1,10 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserService implements OnInit{
+    profileRefresh$ = new Subject<void>();
 
     constructor(private http : HttpClient,private authService: AuthService, private router: Router){
 
@@ -27,7 +29,6 @@ export class UserService implements OnInit{
           data => {
             console.log(data.token)
             localStorage.setItem('token', data.token)
-            this.authService.signIn()
             this.router.navigate(['/microposts'])
           }
       )
@@ -42,10 +43,31 @@ export class UserService implements OnInit{
         data => {
             console.log(data.token)
             localStorage.setItem('token', data.token)
-            this.authService.signIn()
             this.router.navigate(['/microposts'])
         }
     )
 }
+
+    getProfile(id: number) {
+        const headers = { 'Authorization': localStorage.getItem('token')!}
+        return this.http.get<any>(`http://localhost:3000/users/${id}`, { headers })
+    }
+
+    putProfile(id: number, name: string, email: string) {
+        const headers = { 'Authorization': localStorage.getItem('token')!}
+        const user = {
+            name: name,
+            email: email
+        }
+        this.http.put<any>(`http://localhost:3000/users/${id}`, { user }, { headers })
+        .subscribe(res => {
+             console.log(res)
+             this.profileRefresh$.next()
+        })
+    }
+
+    delete(id: number) {
+        console.log(`Utilisateur ${id} supprimer`)
+    }
 
 }

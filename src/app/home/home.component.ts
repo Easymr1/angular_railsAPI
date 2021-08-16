@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 import { MicropostService } from '../services/micropost.services';
 
 @Component({
@@ -9,9 +10,10 @@ import { MicropostService } from '../services/micropost.services';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private micropostService: MicropostService) { }
+  constructor( private micropostService: MicropostService, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.signIn;
   }
 
   onSubmit(form: NgForm) {

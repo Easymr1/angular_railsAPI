@@ -30,6 +30,7 @@ export class OneMicropostComponent implements OnInit {
       this.micropostServive.getOneMicropost(this.micropostId)
     .subscribe((res: any) => {
       this.micropost = res
+      console.log(res)
     })
     }
 
