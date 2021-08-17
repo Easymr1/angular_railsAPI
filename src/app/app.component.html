@@ -1,12 +1,12 @@
 <nav class="nav">
     <ul class="nav--ul">
-        <li class="nav--ul__li" routerLinkActive="active"><a routerLink='signup'>Inscription</a></li>
-        <li class="nav--ul__li" routerLinkActive="active"><a routerLink='login'>Se connecter</a></li>
+        <li *ngIf="!userAuth" class="nav--ul__li" routerLinkActive="active"><a routerLink='signup'>Inscription</a></li>
+        <li *ngIf="!userAuth" class="nav--ul__li" routerLinkActive="active"><a routerLink='login'>Se connecter</a></li>
+        <li *ngIf="userAuth" class="nav--ul__li" routerLinkActive="active"><a (click)="logout()" routerLink='login'>Deconnection</a></li>
         <li class="nav--ul__li" routerLinkActive="active"><a routerLink='home'>Page d'acceuil</a></li>
         <li class="nav--ul__li" routerLinkActive="active"><a [routerLink]="['profile/', userId]">Profile</a></li>
     </ul>
 </nav>
-<h1 class="titre">Page d'acceuil</h1>
 <div class="body">
     <router-outlet></router-outlet>
 </div>

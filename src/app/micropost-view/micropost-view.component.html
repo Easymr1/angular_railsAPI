@@ -4,6 +4,8 @@
     <a [routerLink]="['/micropost/', micropost.id]" >
         <h3>{{micropost.content}}</h3>  
     </a>
-    <app-update-micropost [id]=micropost.id></app-update-micropost>
-    <button (click)="deleteMicropost(micropost.id)">Supprimer</button>
+    <div>
+        <app-update-micropost [id]=micropost.id></app-update-micropost>
+        <button (click)="deleteMicropost(micropost.id)">Supprimer</button>
+    </div>
 </div>

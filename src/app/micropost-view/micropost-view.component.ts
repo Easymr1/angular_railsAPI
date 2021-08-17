@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { MicropostService } from '../services/micropost.services';
-import { Subscription } from 'rxjs'
+import { Subscription, of } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-micropost-view',
@@ -25,10 +26,14 @@ export class MicropostViewComponent implements OnInit {
   getMicroposts(): void{
     this.micropostService.getMicroposts().subscribe(
             (res: any) => {
+            of(res).subscribe(x => console.log(x))
             this.microposts = res
             }
           )
+          
   }
+
+  
 
   deleteMicropost(id: number):void {
     this.micropostService.delete(id).subscribe((res: any) => {

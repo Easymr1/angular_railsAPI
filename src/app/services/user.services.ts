@@ -27,9 +27,10 @@ export class UserService implements OnInit{
       }
       this.http.post<any>('http://localhost:3000/users', {user}).subscribe(
           data => {
-            console.log(data.token)
             localStorage.setItem('token', data.token)
-            this.router.navigate(['/microposts'])
+            const token = localStorage.getItem('token')
+            this.authService.signIn(token)
+            this.router.navigate(['/home'])
           }
       )
   }
@@ -41,9 +42,11 @@ export class UserService implements OnInit{
     }
     this.http.post<any>('http://localhost:3000/sessions', {user}).subscribe(
         data => {
-            console.log(data.token)
             localStorage.setItem('token', data.token)
-            this.router.navigate(['/microposts'])
+            const token = localStorage.getItem('token')
+            this.authService.signIn(token)
+            this.router.navigate(['/home'])
+            
         }
     )
 }

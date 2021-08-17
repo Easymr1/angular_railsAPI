@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { SignupComponent } from './signup/signup.component'
 import { FormsModule } from '@angular/forms';
+
+import { SignupComponent } from './signup/signup.component'
 import { UserService } from './services/user.services';
 import { MicropostViewComponent } from './micropost-view/micropost-view.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,6 +17,7 @@ import { OneMicropostComponent } from './one-micropost/one-micropost.component';
 import { UpdateMicropostComponent } from './update-micropost/update-micropost.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 
 const appRoutes: Routes = [
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
@@ -24,6 +26,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'micropost/:id',canActivate: [AuthGuard], component: OneMicropostComponent },
   { path: 'profile/:id',canActivate: [AuthGuard], component: ProfileComponent },
+  { path: 'not-found', component: FourOhFourComponent },
+  {path: '**', redirectTo:'/not-found'}
 ];
 
 @NgModule({
@@ -35,7 +39,8 @@ const appRoutes: Routes = [
     HomeComponent,
     OneMicropostComponent,
     UpdateMicropostComponent,
-    ProfileComponent
+    ProfileComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
