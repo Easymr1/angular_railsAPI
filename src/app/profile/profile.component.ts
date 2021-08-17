@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs'
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.services';
 import { NgForm } from '@angular/forms';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,16 +13,18 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  private userId!: number;
+  userId!: number;
   profileUser: any = '';
+  userIdToken!: number;
   updateForm: boolean = false;
   subscription!: Subscription;
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.params.id;
-    this.profile()
+    this.userIdToken = this.appComponent.userId
 
+    this.profile()
     this.subscription = this.userService.profileRefresh$.subscribe(() => {
       this.profile();
     })

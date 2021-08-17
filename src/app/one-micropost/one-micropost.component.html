@@ -1,5 +1,7 @@
 <div>
 <h2>{{micropost.content}}</h2>
-<app-update-micropost [id]=micropost.id></app-update-micropost>
-<button (click)=deleteMicropost()>X</button>
+<div *ngIf="userId === micropost.user_id">
+    <app-update-micropost [id]=micropost.id></app-update-micropost>
+    <button (click)=deleteMicropost()>X</button>
+</div>
 </div>

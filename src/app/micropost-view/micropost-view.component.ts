@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { MicropostService } from '../services/micropost.services';
 import { Subscription, of } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-micropost-view',
@@ -12,12 +13,13 @@ import { map } from 'rxjs/operators'
 export class MicropostViewComponent implements OnInit {
   microposts!: any;
   subscription!: Subscription;
-  constructor(private http : HttpClient, private micropostService: MicropostService) { }
+  userId!: number;
+  constructor(private http : HttpClient, private micropostService: MicropostService, private appComponent: AppComponent) { }
 
 
   ngOnInit(): void {
     this.getMicroposts();
-    
+    this.userId = this.appComponent.userId
     this.subscription = this.micropostService.micropostRefresh$.subscribe(() => {
       this.getMicroposts();
     })

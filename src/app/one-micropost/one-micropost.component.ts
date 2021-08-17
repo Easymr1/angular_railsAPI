@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MicropostService } from '../services/micropost.services';
 import { Subscription } from 'rxjs'
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-one-micropost',
@@ -13,12 +14,18 @@ export class OneMicropostComponent implements OnInit {
 
   micropostId!: number;
   micropost: any = '';
+  userId!: number;
   subscription!: Subscription;
-  constructor(private activatedRoute: ActivatedRoute, private micropostServive: MicropostService, private router: Router) { }
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private micropostServive: MicropostService,
+    private router: Router,
+    private appConponent: AppComponent) { }
 
   ngOnInit(): void {
     this.micropostId = this.activatedRoute.snapshot.params.id;
-
+    this.userId = this.appConponent.userId
     this.getMicropost();
 
     this.subscription = this.micropostServive.micropostRefresh$.subscribe(() => {
